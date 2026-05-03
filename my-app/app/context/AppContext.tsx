@@ -8,9 +8,9 @@ type AuthContextType = {
   loading: boolean;
 };
 
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const ChatContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const ChatProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -28,8 +28,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, loading }}>
+    <ChatContext.Provider value={{ isLoggedIn, setIsLoggedIn, loading }}>
       {children}
-    </AuthContext.Provider>
+    </ChatContext.Provider>
   );
 };
