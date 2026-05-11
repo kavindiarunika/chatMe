@@ -6,6 +6,9 @@ type AuthContextType = {
   isLoggedIn: boolean;
   setIsLoggedIn: (value: boolean) => void;
   loading: boolean;
+  active:string;
+  setactive:(value:string)=>void;
+
 };
 
 export const ChatContext = createContext<AuthContextType | undefined>(undefined);
@@ -13,6 +16,7 @@ export const ChatContext = createContext<AuthContextType | undefined>(undefined)
 export const ChatProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [active,setactive] =useState("");
 
   // check JWT on page load
   useEffect(() => {
@@ -28,7 +32,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <ChatContext.Provider value={{ isLoggedIn, setIsLoggedIn, loading }}>
+    <ChatContext.Provider value={{ isLoggedIn, setIsLoggedIn, loading,active,setactive }}>
       {children}
     </ChatContext.Provider>
   );

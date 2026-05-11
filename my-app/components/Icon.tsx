@@ -1,8 +1,14 @@
 "use client";
 
+import { ChatContext } from "@/app/context/AppContext";
 import React from "react";
 
 const Icon = () => {
+
+
+  const { active, setactive } = React.useContext(ChatContext)!;
+
+
   return (
     <div className="h-screen flex flex-col justify-between items-center py-6">
 
@@ -14,10 +20,13 @@ const Icon = () => {
           src="/user.png"
           alt="User"
           className="w-14 h-14 rounded-full object-cover cursor-pointer hover:scale-105 transition"
+          onClick={() => setactive("bio")}
         />
 
         {/* Call */}
-        <div className="p-4 rounded-full bg-[#7288e0] cursor-pointer transition">
+        <div className="p-4 rounded-full bg-[#7288e0] cursor-pointer transition"
+          onClick={() => setactive("call")}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-6 h-6"
@@ -30,7 +39,9 @@ const Icon = () => {
         </div>
 
         {/* Notification */}
-        <div className="p-4 rounded-full bg-[#7288e0] cursor-pointer transition">
+        <div className="p-4 rounded-full bg-[#7288e0] cursor-pointer transition"
+          onClick={() => setactive("bell")}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-6 h-6"
@@ -44,7 +55,9 @@ const Icon = () => {
         </div>
 
         {/* Search */}
-        <div className="p-4 rounded-full bg-[#7288e0] cursor-pointer transition">
+        <div className="p-4 rounded-full bg-[#7288e0] cursor-pointer transition"
+          onClick={() => setactive("search")}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-6 h-6"
@@ -57,8 +70,10 @@ const Icon = () => {
           </svg>
         </div>
         {/* ai bot  */}
-        <div className="p-4 rounded-full bg-[#7288e0] cursor-pointer transition">
-         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-bot-icon lucide-bot"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+        <div className="p-4 rounded-full bg-[#7288e0] cursor-pointer transition"
+          onClick={() => setactive("bot")}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-bot-icon lucide-bot"><path d="M12 8V4H8" /><rect width="16" height="12" x="4" y="8" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></svg>
         </div>
 
       </div>
