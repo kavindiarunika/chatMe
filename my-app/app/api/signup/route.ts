@@ -9,7 +9,8 @@ import jwt from "jsonwebtoken";
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
-  console.log("DB URL:", process.env.DATABASE_URL);
+  console.log("=== SIGNUP START ===");
+  console.log("Email:", email);
 
   // check if user exists
   const existingUser = await prisma.user.findUnique({
@@ -17,6 +18,7 @@ export async function POST(req: Request) {
   });
 
   if (existingUser) {
+    console.log("User already exists:", email);
     return NextResponse.json(
       { error: "User already exists" },
       { status: 400 }
@@ -34,11 +36,19 @@ export async function POST(req: Request) {
     },
   });
 
+  console.log("User created successfully:", {
+    id: user.id,
+    email: user.email,
+  });
+
   const token = jwt.sign(
-  { email: user.email }, // payload
+  { userId: user.id, email: user.email }, // payload
   process.env.JWT_SECRET as string,       // secret
   { expiresIn: "7d" }                     // options
 );
+
+  console.log("Token created:", token);
+  console.log("=== SIGNUP END ===");
 
   return NextResponse.json({ message: "User created", user, token });
 }
